@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 namespace CheeseMVC.ViewModels
 
 {
-    [Display{Name = "Category Name")]
+
     public class AddCategoryViewModel
     {
+        [Display(Name = "Category Name")]
         public string Name { get; set;  }
     }
 }

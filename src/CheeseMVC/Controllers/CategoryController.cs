@@ -18,15 +18,16 @@ namespace CheeseMVC.Controllers
         {
             context = dbContext;
         }
+        //GET: /<controller>/
+
+        public IActionResult Index()
+        {
+            List<CategoryController> categories = context.Categories.ToList();
+
+            return View(categories);
+        }
+
     }
 
-    //GET: /<controller>/
-
-    public IActionResult Index()
-    {
-        List<CategoryController> categories = context.Categories.ToList();
-
-        return View(categories);
-    }
 
 }
