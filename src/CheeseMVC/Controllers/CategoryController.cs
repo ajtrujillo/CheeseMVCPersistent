@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using CheeseMVC.Models;
+using CheeseMVC.ViewModels;
 
 namespace CheeseMVC.Controllers
 {
-    public class CategoryController: Controller
+    public class CategoryController : Controller
     {
         private readonly CheeseDbContext context;
 
@@ -14,14 +15,40 @@ namespace CheeseMVC.Controllers
         {
             context = dbContext;
         }
-            //GET: /<controller>/
+        //GET: /<controller>/
 
-    public IActionResult Index()
-    {
+        public IActionResult Index()
+        {
             List<CheeseCategory> categories = context.Categories.ToList();
 
-        return View(categories);
-    }
+            return View(categories);
+        }
+
+        public IActionResult Add()
+        {
+            AddCategoryViewModel addCategoryViewModel = new AddCategoryViewModel();
+
+            return View(addCategoryViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Add(AddCategoryViewModel addCategoryViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                CheeseCategory newCategory = new CheeseCategory
+                {
+                    Name = addCategoryViewModel.Name
+                };
+
+                context.Categories.Add(newCategory);
+                context.SaveChanges();
+
+                CategoryController: return Redirect("/");
+            };
+
+            return View(addCategoryViewModel);
+        }
 
     }
 
