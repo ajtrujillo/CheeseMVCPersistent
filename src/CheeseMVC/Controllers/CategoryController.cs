@@ -1,12 +1,8 @@
 ﻿using CheeseMVC.Data;
-using CheeseMVC.Models;
-using CheeseMVC.Data;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
+using CheeseMVC.Models;
 
 namespace CheeseMVC.Controllers
 {
@@ -18,14 +14,14 @@ namespace CheeseMVC.Controllers
         {
             context = dbContext;
         }
-        //GET: /<controller>/
+            //GET: /<controller>/
 
-        public IActionResult Index()
-        {
-            List<CategoryController> categories = context.Categories.ToList();
+    public IActionResult Index()
+    {
+            List<CheeseCategory> categories = context.Categories.ToList();
 
-            return View(categories);
-        }
+        return View(categories);
+    }
 
     }
 
