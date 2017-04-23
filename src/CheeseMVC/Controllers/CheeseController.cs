@@ -20,7 +20,6 @@ namespace CheeseMVC.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            //List<Cheese> cheeses = context.Cheeses.ToList();
             IList<Cheese> cheeses = context.Cheeses.Include(c => c.Category).ToList();
 
             return View(cheeses);
@@ -30,6 +29,7 @@ namespace CheeseMVC.Controllers
         {
             AddCheeseViewModel addCheeseViewModel = 
                 new AddCheeseViewModel(context.Categories.ToList());
+
             return View(addCheeseViewModel);
         }
 
