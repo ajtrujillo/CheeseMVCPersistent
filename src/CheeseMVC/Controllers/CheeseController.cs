@@ -80,7 +80,7 @@ namespace CheeseMVC.Controllers
             return Redirect("/");
         }
 
-        // /Cotroller/Action/id
+        // /Controller/Action/id
 
         public IActionResult Category(int id)
         {
@@ -89,7 +89,9 @@ namespace CheeseMVC.Controllers
                 return Redirect("/Category");
             }
 
-            CheeseCategory theCategory = context.Categories.Include(cat => cat.Cheeses).Single(cat => cat.ID == id);
+            CheeseCategory theCategory = context.Categories
+                .Include(cat => cat.Cheeses)
+                .Single(cat => cat.ID == id);
             ViewBag.title = "Cheese in category: " + theCategory.Name;
             return View("Index", theCategory.Cheeses);
 

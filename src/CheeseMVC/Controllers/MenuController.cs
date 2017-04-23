@@ -53,7 +53,11 @@ namespace CheeseMVC.Controllers
 
         public IActionResult ViewMenu(int id)
         {
-            List<CheeseMenu> items = context.CheeseMenus.Include(item => item.Cheese).Where(cm => cm.MenuID == id).ToList();
+            List<CheeseMenu> items = context
+                .CheeseMenus
+                .Include(item => item.Cheese)
+                .Where(cm => cm.MenuID == id)
+                .ToList();
 
             Menu menu = context.Menus.Single(m => m.ID == id);
 
@@ -82,7 +86,10 @@ namespace CheeseMVC.Controllers
                 var cheeseID = addMenuItemViewModel.CheeseID;
                 var menuID = addMenuItemViewModel.MenuID;
 
-                IList<CheeseMenu> existingItems = context.CheeseMenus.Where(cm => cm.CheeseID == cheeseID).Where(cm => cm.MenuID == menuID).ToList();
+                IList<CheeseMenu> existingItems = context.CheeseMenus
+                    .Where(cm => cm.CheeseID == cheeseID)
+                    .Where(cm => cm.MenuID == menuID)
+                    .ToList();
 
                 if (existingItems.Count == 0)
                 {
@@ -95,12 +102,12 @@ namespace CheeseMVC.Controllers
                     context.CheeseMenus.Add(menuItem);
                     context.SaveChanges();
                 }
-                //TODO could be addMenuItemViewModel.MenuID
-                return Redirect(string.Format("/Menu/ViewMenu/{0}", addMenuItemViewModel.Menu));
+                //TODO could be addMenuItemViewModel.Menu
+                return Redirect(string.Format("/Menu/ViewMenu/{0}", addMenuItemViewModel.MenuID));
             }
 
             return View(addMenuItemViewModel);
         }
-    
+
     }
 }
