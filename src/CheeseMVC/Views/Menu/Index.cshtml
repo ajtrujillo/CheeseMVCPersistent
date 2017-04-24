@@ -2,9 +2,6 @@
 
 <h1>Menus</h1>
 
-<p><a asp-controller="Menu" 
-      asp-action="Add">Add Menu</a></p>
-
 <ul>
     @foreach (var menu in Model)
     {
@@ -16,3 +13,8 @@
 
     }
 </ul>
+
+<p>
+    <a asp-controller="Menu"
+       asp-action="Add">Add Menu</a>
+</p>
