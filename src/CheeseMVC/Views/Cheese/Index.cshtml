@@ -7,13 +7,15 @@
     <tr>
         <th>Name</th>
         <th>Description</th>
-        <td>Type</td>
+        <td>Category</td>
     </tr>
 
-    @foreach (var category in Model)
+    @foreach (var cheese in Model)
     {
         <tr>
-            <td>@category.ID</td>
+            <td>@cheese.Name</td>
+            <td>@cheese.Description</td>
+            <td>@cheese.Category.Name</td>
         </tr>
     }
 </table>
@@ -23,6 +25,9 @@
     <p>No cheeses yet!</p>
 }
 
-<p><a asp-controller="Cheese" asp-action="Add">Add Cheese</a> | <a asp-controller="Cheese" asp-action="Remove">Remove</a></p>
+<p>
+    <a asp-controller="Cheese" asp-action="Add">Add Cheese</a>
+    | <a asp-controller="Cheese" asp-action="Remove">Remove</a>
+</p>
 
 

@@ -44,7 +44,7 @@ namespace CheeseMVC.Controllers
                 context.Categories.Add(newCategory);
                 context.SaveChanges();
 
-                CategoryController: return Redirect("/");
+                CategoryController: return Redirect("/Category");
             };
 
             return View(addCategoryViewModel);

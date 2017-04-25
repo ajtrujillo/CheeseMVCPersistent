@@ -3,7 +3,6 @@
 namespace CheeseMVC.ViewModels
 
 {
-
     public class AddCategoryViewModel
     {
         [Required]
